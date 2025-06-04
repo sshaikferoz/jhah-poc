@@ -32,11 +32,33 @@ const JohnsHopkinsDigitalOffice = () => {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     // Johns Hopkins Brand Colors
+    // const colors = {
+    //     primary: '#003B7A', // Heritage Blue
+    //     secondary: '#F2C413', // Gold
+    //     accent: '#1E376D', // Rainbow Indigo
+    //     light: '#9EA2C6', // Blue Bell
+    //     success: '#10B981',
+    //     warning: '#F59E0B',
+    //     error: '#EF4444',
+    //     gray: {
+    //         50: '#F8FAFC',
+    //         100: '#F1F5F9',
+    //         200: '#E2E8F0',
+    //         300: '#CBD5E1',
+    //         400: '#94A3B8',
+    //         500: '#64748B',
+    //         600: '#475569',
+    //         700: '#334155',
+    //         800: '#1E293B',
+    //         900: '#0F172A',
+    //     },
+    // };
     const colors = {
-        primary: '#003B7A', // Heritage Blue
-        secondary: '#F2C413', // Gold
-        accent: '#1E376D', // Rainbow Indigo
-        light: '#9EA2C6', // Blue Bell
+        primary: '#009B8C', // Teal - matches the image background
+        secondary: '#F2C413', // Gold - kept for contrast
+        accent: '#00706A', // Darker teal for accents
+        light: '#4DD0C7', // Lighter teal
+        tertiary: '#003B7A', // Navy blue for text contrast
         success: '#10B981',
         warning: '#F59E0B',
         error: '#EF4444',
@@ -542,10 +564,10 @@ const JohnsHopkinsDigitalOffice = () => {
                     </div>
                 </div>
                 <div className="flex space-x-3">
-                    <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-blue-200 transition-colors">
+                    <button className="bg-blue-100 text-[#009B8C] px-4 py-2 rounded-xl text-sm font-medium hover:bg-blue-200 transition-colors">
                         In Process Requests
                     </button>
-                    <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg">
+                    <button className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg">
                         <Plus className="w-4 h-4 mr-2" />
                         Add Dependent
                     </button>
@@ -553,7 +575,7 @@ const JohnsHopkinsDigitalOffice = () => {
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
                     <h3 className="text-white font-semibold">Active Family Members</h3>
                 </div>
 
@@ -672,7 +694,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             <p className="text-gray-600">Internal Auditing</p>
                         </div>
 
-                        <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all">
+                        <button className="w-full bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white py-3 rounded-xl font-medium hover:from-[#00706A] hover:to-[#009B8C] transition-all">
                             View ID Image
                         </button>
                     </div>
@@ -770,14 +792,14 @@ const JohnsHopkinsDigitalOffice = () => {
                         <p className="text-gray-600">Manage your vehicle access permits</p>
                     </div>
                 </div>
-                <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg">
+                <button className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg">
                     <Plus className="w-4 h-4 mr-2" />
                     New Sticker
                 </button>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
                     <h3 className="text-white font-semibold">Active Vehicle Stickers</h3>
                 </div>
 
@@ -891,7 +913,7 @@ const JohnsHopkinsDigitalOffice = () => {
                     </div>
                     <button
                         onClick={() => setCurrentView('create-visit')}
-                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg"
+                        className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg"
                     >
                         <Plus className="w-4 h-4 mr-2" />
                         Create Request
@@ -900,7 +922,7 @@ const JohnsHopkinsDigitalOffice = () => {
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
                     <h3 className="text-white font-semibold">My Visit Requests</h3>
                 </div>
 
@@ -1016,14 +1038,14 @@ const JohnsHopkinsDigitalOffice = () => {
                 {/* Progress Bar */}
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-blue-700">Progress</span>
-                        <span className="text-sm font-medium text-blue-700">
+                        <span className="text-sm font-medium text-[#009B8C]">Progress</span>
+                        <span className="text-sm font-medium text-[#009B8C]">
                             {Math.round((step / 3) * 100)}%
                         </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                            className="bg-gradient-to-r from-blue-600 to-blue-700 h-2 rounded-full transition-all duration-300"
+                            className="bg-gradient-to-r from-[#009B8C] to-[#00706A] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${(step / 3) * 100}%` }}
                         ></div>
                     </div>
@@ -1103,7 +1125,7 @@ const JohnsHopkinsDigitalOffice = () => {
                                 </button>
                                 <button
                                     onClick={() => setStep(2)}
-                                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all"
+                                    className="px-6 py-3 bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white rounded-xl hover:from-[#00706A] hover:to-[#009B8C] transition-all"
                                 >
                                     Next Step
                                 </button>
@@ -1158,7 +1180,7 @@ const JohnsHopkinsDigitalOffice = () => {
                                 </button>
                                 <button
                                     onClick={() => setStep(3)}
-                                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all"
+                                    className="px-6 py-3 bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white rounded-xl hover:from-[#00706A] hover:to-[#009B8C] transition-all"
                                 >
                                     Next Step
                                 </button>
@@ -1177,7 +1199,7 @@ const JohnsHopkinsDigitalOffice = () => {
                                     <h4 className="font-semibold text-blue-900">
                                         Visitor Information
                                     </h4>
-                                    <button className="text-blue-700 text-sm font-medium hover:text-blue-800">
+                                    <button className="text-[#009B8C] text-sm font-medium hover:text-blue-800">
                                         Add from Favorites
                                     </button>
                                 </div>
