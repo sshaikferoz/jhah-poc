@@ -704,7 +704,7 @@ const JohnsHopkinsDigitalOffice = () => {
                 <div className="lg:col-span-2 space-y-6">
                     {/* Personal Details */}
                     <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg font-semibold mb-6 pb-3 border-b border-gray-200">
+                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
                             Personal Details
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -733,7 +733,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
                     {/* Identification Details */}
                     <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg font-semibold mb-6 pb-3 border-b border-gray-200">
+                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
                             Identification Details
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -750,7 +750,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
                     {/* Hiring Details */}
                     <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg font-semibold mb-6 pb-3 border-b border-gray-200">
+                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
                             Hiring Details
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
