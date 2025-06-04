@@ -994,6 +994,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
     const CreateVisitRequest = () => {
         const [step, setStep] = useState(1);
+        const [currentView, setCurrentView] = useState('create');
 
         return (
             <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
@@ -1002,21 +1003,21 @@ const JohnsHopkinsDigitalOffice = () => {
                         onClick={() => setCurrentView('visits')}
                         className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
                     >
-                        <ArrowLeft className="w-5 h-5 text-gray-600" />
+                        <ArrowLeft className="w-5 h-5 text-gray-700" />
                     </button>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800">
+                        <h2 className="text-2xl font-bold text-gray-900">
                             Create Business Access Request
                         </h2>
-                        <p className="text-gray-600">Step {step} of 3</p>
+                        <p className="text-gray-700">Step {step} of 3</p>
                     </div>
                 </div>
 
                 {/* Progress Bar */}
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-blue-600">Progress</span>
-                        <span className="text-sm font-medium text-blue-600">
+                        <span className="text-sm font-medium text-blue-700">Progress</span>
+                        <span className="text-sm font-medium text-blue-700">
                             {Math.round((step / 3) * 100)}%
                         </span>
                     </div>
@@ -1031,72 +1032,72 @@ const JohnsHopkinsDigitalOffice = () => {
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     {step === 1 && (
                         <div>
-                            <h3 className="text-xl font-semibold mb-6">Visit Details</h3>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">Visit Details</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         From Date
                                     </label>
                                     <input
                                         type="date"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         defaultValue="2025-06-03"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         To Date
                                     </label>
                                     <input
                                         type="date"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         defaultValue="2025-06-06"
                                     />
                                 </div>
                             </div>
 
-                            <h4 className="text-lg font-semibold mb-4">
+                            <h4 className="text-lg font-semibold mb-4 text-gray-900">
                                 Visit Purpose & Location
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         Purpose
                                     </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option>Select Purpose</option>
-                                        <option>Meeting</option>
-                                        <option>Conference</option>
-                                        <option>Training</option>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="" className="text-gray-500">Select Purpose</option>
+                                        <option value="meeting" className="text-gray-900">Meeting</option>
+                                        <option value="conference" className="text-gray-900">Conference</option>
+                                        <option value="training" className="text-gray-900">Training</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         Area
                                     </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option>Select Area</option>
-                                        <option>Main Campus</option>
-                                        <option>Research Wing</option>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="" className="text-gray-500">Select Area</option>
+                                        <option value="main-campus" className="text-gray-900">Main Campus</option>
+                                        <option value="research-wing" className="text-gray-900">Research Wing</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div className="mb-8">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
                                     Gate
                                 </label>
-                                <select className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option>Select Gate</option>
-                                    <option>Main Gate</option>
-                                    <option>North Gate</option>
+                                <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="" className="text-gray-500">Select Gate</option>
+                                    <option value="main-gate" className="text-gray-900">Main Gate</option>
+                                    <option value="north-gate" className="text-gray-900">North Gate</option>
                                 </select>
                             </div>
 
                             <div className="flex justify-between">
                                 <button
                                     onClick={() => setCurrentView('visits')}
-                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors"
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
                                 >
                                     Cancel
                                 </button>
@@ -1112,38 +1113,38 @@ const JohnsHopkinsDigitalOffice = () => {
 
                     {step === 2 && (
                         <div>
-                            <h3 className="text-xl font-semibold mb-6">
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">
                                 Purpose & Location Details
                             </h3>
                             <div className="mb-6">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
                                     Detailed Purpose
                                 </label>
                                 <textarea
-                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-32 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-32 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                                     placeholder="Participating in a meeting, seminar, conference or presentation"
                                 />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         Specific Area
                                     </label>
                                     <input
                                         type="text"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         defaultValue="ÄRÖNÖ"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
                                         Building/Location
                                     </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option>Select Building</option>
-                                        <option>Main Hospital</option>
-                                        <option>Research Center</option>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="" className="text-gray-500">Select Building</option>
+                                        <option value="main-hospital" className="text-gray-900">Main Hospital</option>
+                                        <option value="research-center" className="text-gray-900">Research Center</option>
                                     </select>
                                 </div>
                             </div>
@@ -1151,7 +1152,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             <div className="flex justify-between">
                                 <button
                                     onClick={() => setStep(1)}
-                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors"
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
                                 >
                                     Previous
                                 </button>
@@ -1167,7 +1168,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
                     {step === 3 && (
                         <div>
-                            <h3 className="text-xl font-semibold mb-6">
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">
                                 Visitor & Vehicle Details
                             </h3>
 
@@ -1176,67 +1177,72 @@ const JohnsHopkinsDigitalOffice = () => {
                                     <h4 className="font-semibold text-blue-900">
                                         Visitor Information
                                     </h4>
-                                    <button className="text-blue-600 text-sm font-medium">
+                                    <button className="text-blue-700 text-sm font-medium hover:text-blue-800">
                                         Add from Favorites
                                     </button>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             ID Type
                                         </label>
-                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            <option>National ID</option>
-                                            <option>Passport</option>
+                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                            <option value="national-id" className="text-gray-900">National ID</option>
+                                            <option value="passport" className="text-gray-900">Passport</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Nationality
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter nationality"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             ID Number
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter ID number"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             First Name
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter first name"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Last Name
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter last name"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Mobile Number
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter mobile number"
                                         />
                                     </div>
                                 </div>
@@ -1248,50 +1254,53 @@ const JohnsHopkinsDigitalOffice = () => {
                                 </h4>
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Plate Type
                                         </label>
-                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            <option>Private</option>
-                                            <option>Commercial</option>
+                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                            <option value="private" className="text-gray-900">Private</option>
+                                            <option value="commercial" className="text-gray-900">Commercial</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Plate Number
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter plate number"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Manufacturer
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter manufacturer"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
                                             Color
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter color"
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mb-8">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
                                     Justification/Remarks
                                 </label>
                                 <textarea
-                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                                     placeholder="Enter justification (max 200 characters)"
                                     maxLength="200"
                                 />
@@ -1300,7 +1309,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             <div className="flex justify-between">
                                 <button
                                     onClick={() => setStep(2)}
-                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors"
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
                                 >
                                     Previous
                                 </button>
