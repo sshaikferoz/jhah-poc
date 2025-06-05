@@ -1,0 +1,11 @@
+---
+applications:
+  - name: jhah-poc
+    memory: 512M
+    instances: 1
+    buildpacks:
+      - nodejs_buildpack
+    command: npm run start
+    path: .
+    env:
+      NODE_ENV: production
