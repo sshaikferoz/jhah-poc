@@ -282,13 +282,13 @@ const JohnsHopkinsDigitalOffice = () => {
                     {
                         id: 'meetings',
                         icon: Calendar,
-                        label: 'Meeting Management',
+                        label: 'Vendor Management',
                         badge: '3',
                     },
                     {
                         id: 'security',
                         icon: AlertTriangle,
-                        label: 'Security Violations',
+                        label: 'Traffic Violations',
                         badge: '2',
                     },
                 ].map((item) => (
@@ -404,14 +404,14 @@ const JohnsHopkinsDigitalOffice = () => {
                     },
                     {
                         id: 'security',
-                        title: 'Security Violations',
+                        title: 'Traffic Violations',
                         icon: AlertTriangle,
                         color: colors.error,
                         description: 'Security incident management',
                     },
                     {
                         id: 'meetings',
-                        title: 'Meeting Management',
+                        title: 'Vendor Management',
                         icon: Calendar,
                         color: colors.accent,
                         description: 'Schedule and manage meetings',
@@ -754,7 +754,7 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            Meeting Management
+                            Vendor Management
                         </h2>
                         <p className="text-gray-600">Schedule and manage meetings</p>
                     </div>
@@ -885,7 +885,7 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            Security Violations
+                            Traffic Violations
                         </h2>
                         <p className="text-gray-600">Monitor and manage security incidents</p>
                     </div>
@@ -910,7 +910,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4">
-                    <h3 className="text-white font-semibold">Recent Security Violations</h3>
+                    <h3 className="text-white font-semibold">Recent Traffic Violations</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -1626,7 +1626,7 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-900">
-                            Report Security Violation
+                            Report Traffic Violation
                         </h2>
                         <p className="text-gray-700">File an incident report</p>
                     </div>
@@ -1655,15 +1655,20 @@ const JohnsHopkinsDigitalOffice = () => {
                             </label>
                             <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                 <option value="">Select Incident Type</option>
-                                <option value="unauthorized-access">Unauthorized Access</option>
-                                <option value="badge-violation">Badge Violation</option>
-                                <option value="vehicle-violation">Vehicle Violation</option>
-                                <option value="suspicious-activity">Suspicious Activity</option>
-                                <option value="theft">Theft/Missing Items</option>
-                                <option value="vandalism">Vandalism</option>
-                                <option value="harassment">Harassment</option>
-                                <option value="safety-violation">Safety Violation</option>
-                                <option value="other">Other</option>
+                                <option value="overspeed">Overspeeding</option>
+                                <option value="signal-violation">Signal Violation</option>
+                                <option value="unauthorized-parking">Unauthorized Parking</option>
+                                <option value="wrong-lane">Wrong Lane Driving</option>
+                                <option value="no-seatbelt">No Seatbelt</option>
+                                <option value="mobile-usage">Using Mobile While Driving</option>
+                                <option value="drunk-driving">Drunk Driving</option>
+                                <option value="no-helmet">No Helmet</option>
+                                <option value="expired-registration">Expired Vehicle Registration</option>
+                                <option value="invalid-license">Driving Without a Valid License</option>
+                                <option value="reckless-driving">Reckless or Dangerous Driving</option>
+                                <option value="illegal-u-turn">Illegal U-Turn</option>
+                                <option value="blocking-emergency">Blocking Emergency Vehicle</option>
+
                             </select>
                         </div>
                         <div>
@@ -2047,7 +2052,7 @@ const JohnsHopkinsDigitalOffice = () => {
                                         <option value="conference-room-b">Conference Room B (10 people)</option>
                                         <option value="board-room">Board Room (15 people)</option>
                                         <option value="demo-room">Equipment Demo Room (8 people)</option>
-                                        <option value="virtual-meeting">Virtual Meeting</option>
+                                        {/* <option value="virtual-meeting">Virtual Meeting</option> */}
                                         <option value="outdoor-area">Outdoor Meeting Area</option>
                                     </select>
                                 </div>
