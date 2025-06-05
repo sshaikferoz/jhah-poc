@@ -138,39 +138,39 @@ const JohnsHopkinsDigitalOffice = () => {
         },
     ];
 
-    const vendorRequests = [
+    const meetingRequests = [
         {
             id: 1802,
             companyName: 'TechCorp Solutions',
             contactPerson: 'Ahmed Al-Rashid',
-            startDate: '06/05/2025',
-            endDate: '06/03/2025',
-            area: 'ÄRÖNÖ',
-            serviceType: 'IT Maintenance',
+            meetingDate: '06/05/2025',
+            meetingTime: '09:00 - 10:00',
+            room: 'Conference Room A',
+            meetingType: 'IT Consultation',
             status: 'Pending Approval',
-            type: 'Technology Services',
+            description: 'Discussion about new hospital management system',
         },
         {
             id: 1844,
             companyName: 'MedEquip LLC',
             contactPerson: 'Sarah Johnson',
-            startDate: '05/24/2025',
-            endDate: '05/30/2025',
-            area: 'DHARRAN (INDUSTRIAL)',
-            serviceType: 'Equipment Installation',
+            meetingDate: '05/24/2025',
+            meetingTime: '14:00 - 15:00',
+            room: 'Medical Equipment Demo Room',
+            meetingType: 'Equipment Demo',
             status: 'Approved',
-            type: 'Medical Equipment',
+            description: 'Demonstration of new MRI equipment',
         },
         {
             id: 1845,
             companyName: 'CleanPro Services',
             contactPerson: 'Mohammed Hassan',
-            startDate: '05/24/2025',
-            endDate: '05/30/2025',
-            area: 'HAWIYAH',
-            serviceType: 'Facility Cleaning',
-            status: 'Expired',
-            type: 'Maintenance',
+            meetingDate: '05/24/2025',
+            meetingTime: '11:00 - 12:00',
+            room: 'Administration Office',
+            meetingType: 'Service Review',
+            status: 'Completed',
+            description: 'Monthly cleaning service review meeting',
         },
     ];
 
@@ -280,9 +280,9 @@ const JohnsHopkinsDigitalOffice = () => {
                     { id: 'id-cards', icon: CreditCard, label: 'ID Card Management', badge: '3' },
                     { id: 'stickers', icon: Car, label: 'Vehicle Stickers', badge: '4' },
                     {
-                        id: 'vendors',
-                        icon: Building,
-                        label: 'Vendor Management',
+                        id: 'meetings',
+                        icon: Calendar,
+                        label: 'Meeting Management',
                         badge: '3',
                     },
                     {
@@ -336,16 +336,6 @@ const JohnsHopkinsDigitalOffice = () => {
             {/* Organization Info */}
             <div className="mt-auto p-6 border-t border-blue-700/30">
                 <div className="bg-white/5 rounded-xl p-4">
-                    {/* <div className="text-blue-300 text-xs uppercase tracking-wider mb-2">
-                        Organization
-                    </div>
-                    <h4 className="text-white font-semibold text-sm mb-1">
-                        Johns Hopkins
-                    </h4>
-                    <h5 className="text-white font-medium text-sm mb-2">
-                        Aramco Healthcare
-                    </h5> */}
-
                     <div className="text-xs space-y-1">
                         <div className="text-blue-300">Position</div>
                         <div className="text-white">Internal Staffing Div</div>
@@ -420,11 +410,11 @@ const JohnsHopkinsDigitalOffice = () => {
                         description: 'Security incident management',
                     },
                     {
-                        id: 'vendors',
-                        title: 'Vendor Management',
-                        icon: Building,
+                        id: 'meetings',
+                        title: 'Meeting Management',
+                        icon: Calendar,
                         color: colors.accent,
-                        description: 'Vendor access and services',
+                        description: 'Schedule and manage meetings',
                     },
                 ].map((service) => (
                     <div
@@ -752,7 +742,7 @@ const JohnsHopkinsDigitalOffice = () => {
         </div>
     );
 
-    const VendorManagement = () => (
+    const MeetingManagement = () => (
         <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center">
@@ -764,9 +754,9 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            Vendor Management
+                            Meeting Management
                         </h2>
-                        <p className="text-gray-600">Manage vendor access and services</p>
+                        <p className="text-gray-600">Schedule and manage meetings</p>
                     </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -779,18 +769,18 @@ const JohnsHopkinsDigitalOffice = () => {
                         </button>
                     </div>
                     <button
-                        onClick={() => setCurrentView('create-vendor')}
+                        onClick={() => setCurrentView('create-meeting')}
                         className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg"
                     >
                         <Plus className="w-4 h-4 mr-2" />
-                        Register Vendor
+                        Initiate Meeting
                     </button>
                 </div>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
-                    <h3 className="text-white font-semibold">Vendor Access Requests</h3>
+                    <h3 className="text-white font-semibold">Meeting Requests</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -798,19 +788,19 @@ const JohnsHopkinsDigitalOffice = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Vendor
+                                    Company
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Service Period
+                                    Meeting Date & Time
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Service Area
+                                    Room/Location
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Service Type
+                                    Meeting Type
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -818,7 +808,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {vendorRequests.map((request) => (
+                            {meetingRequests.map((request) => (
                                 <tr
                                     key={request.id}
                                     className="hover:bg-blue-50 transition-colors"
@@ -826,7 +816,7 @@ const JohnsHopkinsDigitalOffice = () => {
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                                                <Building className="w-5 h-5 text-blue-600" />
+                                                <Calendar className="w-5 h-5 text-blue-600" />
                                             </div>
                                             <div>
                                                 <div className="text-sm font-medium text-gray-900">
@@ -839,16 +829,16 @@ const JohnsHopkinsDigitalOffice = () => {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        <div>{request.startDate}</div>
+                                        <div>{request.meetingDate}</div>
                                         <div className="text-xs text-gray-500">
-                                            to {request.endDate}
+                                            {request.meetingTime}
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm font-medium text-gray-900">
-                                            {request.area}
+                                            {request.room}
                                         </div>
-                                        <div className="text-xs text-gray-500">{request.serviceType}</div>
+                                        <div className="text-xs text-gray-500">{request.meetingType}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span
@@ -856,8 +846,8 @@ const JohnsHopkinsDigitalOffice = () => {
                                                 ? 'bg-yellow-100 text-yellow-800'
                                                 : request.status === 'Approved'
                                                     ? 'bg-green-100 text-green-800'
-                                                    : request.status === 'Expired'
-                                                        ? 'bg-red-100 text-red-800'
+                                                    : request.status === 'Completed'
+                                                        ? 'bg-blue-100 text-blue-800'
                                                         : 'bg-gray-100 text-gray-800'
                                                 }`}
                                         >
@@ -865,8 +855,8 @@ const JohnsHopkinsDigitalOffice = () => {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="inline-flex px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                            {request.type}
+                                        <span className="inline-flex px-3 py-1 text-xs font-medium bg-purple-100 text-purple-800 rounded-full">
+                                            {request.meetingType}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -1064,7 +1054,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Employee ID1 *
+                                        Employee ID *
                                     </label>
                                     <input
                                         type="text"
@@ -1858,24 +1848,37 @@ const JohnsHopkinsDigitalOffice = () => {
         );
     };
 
-    // Create Vendor Request form (keeping the existing one)
-    const CreateVendorRequest = () => {
+    // Create Meeting Request form (updated version)
+    const CreateMeetingRequest = () => {
         const [step, setStep] = useState(1);
+
+        // Generate time slots from 8 AM to 6 PM
+        const generateTimeSlots = () => {
+            const slots = [];
+            for (let hour = 8; hour < 18; hour++) {
+                const startTime = hour < 12 ? `${hour}:00 AM` : hour === 12 ? `12:00 PM` : `${hour - 12}:00 PM`;
+                const endTime = (hour + 1) < 12 ? `${hour + 1}:00 AM` : (hour + 1) === 12 ? `12:00 PM` : `${hour + 1 - 12}:00 PM`;
+                slots.push(`${startTime} - ${endTime}`);
+            }
+            return slots;
+        };
+
+        const timeSlots = generateTimeSlots();
 
         return (
             <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
                 <div className="flex items-center mb-8">
                     <button
-                        onClick={() => setCurrentView('vendors')}
+                        onClick={() => setCurrentView('meetings')}
                         className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
                     >
                         <ArrowLeft className="w-5 h-5 text-gray-700" />
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-900">
-                            Register New Vendor Access
+                            Initiate Meeting
                         </h2>
-                        <p className="text-gray-700">Step {step} of 3</p>
+                        <p className="text-gray-700">Step {step} of 2</p>
                     </div>
                 </div>
 
@@ -1884,13 +1887,13 @@ const JohnsHopkinsDigitalOffice = () => {
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-[#009B8C]">Progress</span>
                         <span className="text-sm font-medium text-[#009B8C]">
-                            {Math.round((step / 3) * 100)}%
+                            {Math.round((step / 2) * 100)}%
                         </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
                             className="bg-gradient-to-r from-[#009B8C] to-[#00706A] h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${(step / 3) * 100}%` }}
+                            style={{ width: `${(step / 2) * 100}%` }}
                         ></div>
                     </div>
                 </div>
@@ -1925,7 +1928,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Vendor Category *
+                                        Meeting Category *
                                     </label>
                                     <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                         <option value="">Select Category</option>
@@ -1976,7 +1979,7 @@ const JohnsHopkinsDigitalOffice = () => {
 
                             <div className="flex justify-between">
                                 <button
-                                    onClick={() => setCurrentView('vendors')}
+                                    onClick={() => setCurrentView('meetings')}
                                     className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
                                 >
                                     Cancel
@@ -1994,52 +1997,86 @@ const JohnsHopkinsDigitalOffice = () => {
                     {step === 2 && (
                         <div>
                             <h3 className="text-xl font-semibold mb-6 text-gray-900">
-                                Service Details & Access Period
+                                Meeting Details
                             </h3>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Service Start Date *
+                                        Date of Meeting *
                                     </label>
                                     <input
                                         type="date"
                                         className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        min={new Date().toISOString().split('T')[0]}
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Service End Date *
+                                        Meeting Timings *
                                     </label>
-                                    <input
-                                        type="date"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Time Slot</option>
+                                        {timeSlots.map((slot, index) => (
+                                            <option key={index} value={slot}>
+                                                {slot}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-800 mb-2">
-                                    Service Description *
+                                    Meeting Description *
                                 </label>
                                 <textarea
                                     className="w-full border border-gray-300 rounded-xl px-4 py-3 h-32 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                                    placeholder="Detailed description of services to be provided..."
+                                    placeholder="Detailed description of the meeting purpose and agenda..."
                                 />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Access Area *
+                                        Preferred Meeting Room *
                                     </label>
                                     <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="">Select Access Area</option>
-                                        <option value="main-hospital">Main Hospital</option>
-                                        <option value="research-center">Research Center</option>
-                                        <option value="admin-building">Administration Building</option>
-                                        <option value="parking-area">Parking Areas</option>
-                                        <option value="all-areas">All Areas (Special Permission)</option>
+                                        <option value="">Select Meeting Room</option>
+                                        <option value="conference-room-a">Conference Room A (20 people)</option>
+                                        <option value="conference-room-b">Conference Room B (10 people)</option>
+                                        <option value="board-room">Board Room (15 people)</option>
+                                        <option value="demo-room">Equipment Demo Room (8 people)</option>
+                                        <option value="virtual-meeting">Virtual Meeting</option>
+                                        <option value="outdoor-area">Outdoor Meeting Area</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Expected Attendees *
+                                    </label>
+                                    <input
+                                        type="number"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Number of attendees"
+                                        min="1"
+                                        max="50"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Meeting Type
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="business-presentation">Business Presentation</option>
+                                        <option value="product-demo">Product Demonstration</option>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="training">Training Session</option>
+                                        <option value="interview">Interview</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
                                 <div>
@@ -2054,26 +2091,52 @@ const JohnsHopkinsDigitalOffice = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Access Level
-                                    </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="standard">Standard Access</option>
-                                        <option value="restricted">Restricted Access</option>
-                                        <option value="high-security">High Security Clearance</option>
-                                    </select>
+                            <div className="bg-blue-50 rounded-xl p-6 mb-6">
+                                <h4 className="font-semibold text-blue-900 mb-4">
+                                    Equipment & Setup Requirements
+                                </h4>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {[
+                                        'Projector/Screen',
+                                        'Audio System',
+                                        'Video Conferencing',
+                                        'Whiteboard',
+                                        'Laptops/Tablets',
+                                        'Refreshments',
+                                        'Recording Equipment',
+                                        'Internet Access'
+                                    ].map((item) => (
+                                        <label key={item} className="flex items-center space-x-2">
+                                            <input
+                                                type="checkbox"
+                                                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                            />
+                                            <span className="text-sm text-gray-700">{item}</span>
+                                        </label>
+                                    ))}
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Working Hours
-                                    </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="business">Business Hours (8AM-5PM)</option>
-                                        <option value="extended">Extended Hours (6AM-10PM)</option>
-                                        <option value="24-7">24/7 Access</option>
-                                    </select>
+                            </div>
+
+                            <div className="mb-8">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
+                                    Additional Notes/Special Requirements
+                                </label>
+                                <textarea
+                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                    placeholder="Any special requirements, accessibility needs, or additional notes..."
+                                />
+                            </div>
+
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                                <div className="flex items-start">
+                                    <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
+                                    <div>
+                                        <h5 className="font-medium text-yellow-800 mb-1">Important Notice</h5>
+                                        <p className="text-sm text-yellow-700">
+                                            All meeting requests are subject to room availability and approval by the Administration Department.
+                                            Processing time is typically 1-2 business days. Priority is given to urgent medical and operational meetings.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -2084,201 +2147,13 @@ const JohnsHopkinsDigitalOffice = () => {
                                 >
                                     Previous
                                 </button>
-                                <button
-                                    onClick={() => setStep(3)}
-                                    className="px-6 py-3 bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white rounded-xl hover:from-[#00706A] hover:to-[#009B8C] transition-all"
-                                >
-                                    Next Step
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {step === 3 && (
-                        <div>
-                            <h3 className="text-xl font-semibold mb-6 text-gray-900">
-                                Personnel & Vehicle Information
-                            </h3>
-
-                            <div className="bg-blue-50 rounded-xl p-6 mb-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h4 className="font-semibold text-blue-900">
-                                        Authorized Personnel
-                                    </h4>
-                                    <button className="text-[#009B8C] text-sm font-medium hover:text-blue-800">
-                                        + Add Person
-                                    </button>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Full Name *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter full name"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            ID Type
-                                        </label>
-                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            <option value="national-id">National ID</option>
-                                            <option value="iqama">Iqama</option>
-                                            <option value="passport">Passport</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            ID Number *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter ID number"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Role/Position
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter role"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Mobile Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter mobile number"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Nationality
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter nationality"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Badge Validity (Days)
-                                        </label>
-                                        <input
-                                            type="number"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="30"
-                                            min="1"
-                                            max="365"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-green-50 rounded-xl p-6 mb-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h4 className="font-semibold text-green-900">
-                                        Vehicle Information (Optional)
-                                    </h4>
-                                    <button className="text-[#009B8C] text-sm font-medium hover:text-blue-800">
-                                        + Add Vehicle
-                                    </button>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            License Plate
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter plate number"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Vehicle Make/Model
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Toyota Camry"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Vehicle Color
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="White"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Driver Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Driver name"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mb-8">
-                                <label className="block text-sm font-medium text-gray-800 mb-2">
-                                    Additional Notes/Special Requirements
-                                </label>
-                                <textarea
-                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                                    placeholder="Any special requirements, security clearances needed, or additional notes..."
-                                />
-                            </div>
-
-                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
-                                <div className="flex items-start">
-                                    <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
-                                    <div>
-                                        <h5 className="font-medium text-yellow-800 mb-1">Important Notice</h5>
-                                        <p className="text-sm text-yellow-700">
-                                            All vendor access requests are subject to security clearance and approval by the Security Department.
-                                            Processing time is typically 3-5 business days. Emergency access requests should be coordinated directly with Security.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex justify-between">
-                                <button
-                                    onClick={() => setStep(2)}
-                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
-                                >
-                                    Previous
-                                </button>
                                 <div className="space-x-3">
                                     <button className="px-6 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-colors">
                                         Save Draft
                                     </button>
                                     <button
                                         onClick={() => {
-                                            setCurrentView('vendors');
+                                            setCurrentView('meetings');
                                             setStep(1);
                                         }}
                                         className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:from-green-700 hover:to-green-800 transition-all"
@@ -2306,10 +2181,10 @@ const JohnsHopkinsDigitalOffice = () => {
                 return <StickersView />;
             case 'create-sticker':
                 return <CreateSticker />;
-            case 'vendors':
-                return <VendorManagement />;
-            case 'create-vendor':
-                return <CreateVendorRequest />;
+            case 'meetings':
+                return <MeetingManagement />;
+            case 'create-meeting':
+                return <CreateMeetingRequest />;
             case 'security':
                 return <SecurityViolations />;
             case 'create-security-violation':
