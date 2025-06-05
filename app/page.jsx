@@ -25,6 +25,9 @@ import {
     Shield,
     Award,
     Clock,
+    AlertTriangle,
+    Camera,
+    FileText,
 } from 'lucide-react';
 
 const JohnsHopkinsDigitalOffice = () => {
@@ -32,27 +35,6 @@ const JohnsHopkinsDigitalOffice = () => {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     // Johns Hopkins Brand Colors
-    // const colors = {
-    //     primary: '#003B7A', // Heritage Blue
-    //     secondary: '#F2C413', // Gold
-    //     accent: '#1E376D', // Rainbow Indigo
-    //     light: '#9EA2C6', // Blue Bell
-    //     success: '#10B981',
-    //     warning: '#F59E0B',
-    //     error: '#EF4444',
-    //     gray: {
-    //         50: '#F8FAFC',
-    //         100: '#F1F5F9',
-    //         200: '#E2E8F0',
-    //         300: '#CBD5E1',
-    //         400: '#94A3B8',
-    //         500: '#64748B',
-    //         600: '#475569',
-    //         700: '#334155',
-    //         800: '#1E293B',
-    //         900: '#0F172A',
-    //     },
-    // };
     const colors = {
         primary: '#009B8C', // Teal - matches the image background
         secondary: '#F2C413', // Gold - kept for contrast
@@ -77,34 +59,39 @@ const JohnsHopkinsDigitalOffice = () => {
     };
 
     // Sample data
-    const familyMembers = [
+    const idCards = [
         {
             id: 1,
-            name: 'Hadi Al Fadl',
-            relation: 'SELF',
-            expiry: '05/05/2025',
+            employeeName: 'Hadi Al Fadl',
+            badgeNumber: '005005IT1502/JHV',
+            department: 'IT Services',
+            position: 'System Administrator',
+            issueDate: '2024-01-15',
+            expiryDate: '2025-01-15',
             status: 'Active',
+            cardType: 'Employee'
         },
         {
             id: 2,
-            name: 'Ahmed Fadl',
-            relation: 'Son',
-            expiry: '30/11/2026',
+            employeeName: 'Dr. Sarah Ahmad',
+            badgeNumber: '006025MD1203/JHV',
+            department: 'Cardiology',
+            position: 'Senior Physician',
+            issueDate: '2024-03-10',
+            expiryDate: '2025-03-10',
             status: 'Active',
+            cardType: 'Medical Staff'
         },
         {
             id: 3,
-            name: 'Abu Eiz abu Hadi',
-            relation: 'Father',
-            expiry: '20/06/2027',
-            status: 'Active',
-        },
-        {
-            id: 4,
-            name: 'Majeed SOMEABLE Moorlakaga',
-            relation: 'Servant',
-            expiry: '30/07/2025',
-            status: 'Active',
+            employeeName: 'Ahmed Contractor',
+            badgeNumber: 'TEMP0055/JHV',
+            department: 'Maintenance',
+            position: 'Contractor',
+            issueDate: '2024-05-01',
+            expiryDate: '2024-12-31',
+            status: 'Temporary',
+            cardType: 'Contractor'
         },
     ];
 
@@ -116,6 +103,8 @@ const JohnsHopkinsDigitalOffice = () => {
             expiry: 'Permanent',
             plate: '6767 NTI J',
             status: 'Approved',
+            owner: 'Hadi Al Fadl',
+            requestDate: '2024-01-10'
         },
         {
             id: 2,
@@ -124,6 +113,8 @@ const JohnsHopkinsDigitalOffice = () => {
             expiry: 'Permanent',
             plate: '6876603',
             status: 'Approved',
+            owner: 'Dr. Sarah Ahmad',
+            requestDate: '2024-02-15'
         },
         {
             id: 3,
@@ -132,6 +123,8 @@ const JohnsHopkinsDigitalOffice = () => {
             expiry: 'Permanent',
             plate: '24758486',
             status: 'Approved',
+            owner: 'Mohammed Hassan',
+            requestDate: '2024-03-20'
         },
         {
             id: 4,
@@ -140,36 +133,80 @@ const JohnsHopkinsDigitalOffice = () => {
             expiry: 'Permanent',
             plate: '1744',
             status: 'Rejected',
+            owner: 'Ahmed Ali',
+            requestDate: '2024-04-05'
         },
     ];
 
-    const visitRequests = [
+    const vendorRequests = [
         {
             id: 1802,
+            companyName: 'TechCorp Solutions',
+            contactPerson: 'Ahmed Al-Rashid',
             startDate: '06/05/2025',
             endDate: '06/03/2025',
             area: 'ÄRÖNÖ',
-            gate: 'Post Name Long 21',
+            serviceType: 'IT Maintenance',
             status: 'Pending Approval',
-            type: 'Business Temporary',
+            type: 'Technology Services',
         },
         {
             id: 1844,
+            companyName: 'MedEquip LLC',
+            contactPerson: 'Sarah Johnson',
             startDate: '05/24/2025',
             endDate: '05/30/2025',
             area: 'DHARRAN (INDUSTRIAL)',
-            gate: 'LONG 214',
-            status: 'Expired',
-            type: 'Business Temporary',
+            serviceType: 'Equipment Installation',
+            status: 'Approved',
+            type: 'Medical Equipment',
         },
         {
             id: 1845,
+            companyName: 'CleanPro Services',
+            contactPerson: 'Mohammed Hassan',
             startDate: '05/24/2025',
             endDate: '05/30/2025',
             area: 'HAWIYAH',
-            gate: '',
+            serviceType: 'Facility Cleaning',
             status: 'Expired',
-            type: 'In camp',
+            type: 'Maintenance',
+        },
+    ];
+
+    const securityViolations = [
+        {
+            id: 2001,
+            reportedBy: 'Security Team Alpha',
+            date: '06/04/2025',
+            time: '14:30',
+            location: 'Main Campus - Building A',
+            type: 'Unauthorized Access',
+            severity: 'High',
+            status: 'Under Investigation',
+            description: 'Attempted access to restricted area without proper authorization'
+        },
+        {
+            id: 2002,
+            reportedBy: 'Dr. Sarah Ahmad',
+            date: '06/03/2025',
+            time: '09:15',
+            location: 'Research Wing - Lab 205',
+            type: 'Badge Violation',
+            severity: 'Medium',
+            status: 'Resolved',
+            description: 'Employee found without proper ID badge in secure area'
+        },
+        {
+            id: 2003,
+            reportedBy: 'Gate Security',
+            date: '06/02/2025',
+            time: '18:45',
+            location: 'North Gate',
+            type: 'Vehicle Violation',
+            severity: 'Low',
+            status: 'Pending Review',
+            description: 'Vehicle without proper sticker attempting entry'
         },
     ];
 
@@ -193,13 +230,13 @@ const JohnsHopkinsDigitalOffice = () => {
 
     const Sidebar = () => (
         <div
-            className="w-72 min-h-screen shadow-2xl relative"
+            className="w-72 min-h-full z-10 shadow-2xl relative overflow-auto"
             style={{
                 background: `linear-gradient(180deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
             }}
         >
             {/* Header */}
-            <div className="p-6 border-b border-blue-700/30">
+            <div className="p-4 border-b border-blue-700/30">
                 <div className="flex items-center mb-6">
                     <JHLogo size={40} className="mr-4" />
                     <div>
@@ -240,18 +277,19 @@ const JohnsHopkinsDigitalOffice = () => {
 
                 {[
                     { id: 'dashboard', icon: Home, label: 'Dashboard', badge: null },
+                    { id: 'id-cards', icon: CreditCard, label: 'ID Card Management', badge: '3' },
+                    { id: 'stickers', icon: Car, label: 'Vehicle Stickers', badge: '4' },
                     {
-                        id: 'family',
-                        icon: Users,
-                        label: 'Family & Dependents',
-                        badge: '4',
-                    },
-                    { id: 'stickers', icon: Car, label: 'Vehicle Stickers', badge: null },
-                    {
-                        id: 'visits',
-                        icon: UserCheck,
-                        label: 'Visitor Management',
+                        id: 'vendors',
+                        icon: Building,
+                        label: 'Vendor Management',
                         badge: '3',
+                    },
+                    {
+                        id: 'security',
+                        icon: AlertTriangle,
+                        label: 'Security Violations',
+                        badge: '2',
                     },
                 ].map((item) => (
                     <button
@@ -298,7 +336,7 @@ const JohnsHopkinsDigitalOffice = () => {
             {/* Organization Info */}
             <div className="mt-auto p-6 border-t border-blue-700/30">
                 <div className="bg-white/5 rounded-xl p-4">
-                    <div className="text-blue-300 text-xs uppercase tracking-wider mb-2">
+                    {/* <div className="text-blue-300 text-xs uppercase tracking-wider mb-2">
                         Organization
                     </div>
                     <h4 className="text-white font-semibold text-sm mb-1">
@@ -306,7 +344,7 @@ const JohnsHopkinsDigitalOffice = () => {
                     </h4>
                     <h5 className="text-white font-medium text-sm mb-2">
                         Aramco Healthcare
-                    </h5>
+                    </h5> */}
 
                     <div className="text-xs space-y-1">
                         <div className="text-blue-300">Position</div>
@@ -317,7 +355,7 @@ const JohnsHopkinsDigitalOffice = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="p-4">
+            <div className="p-4 mt-8">
                 <div className="flex space-x-2">
                     <button className="flex-1 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg p-2 transition-all">
                         <Settings className="w-4 h-4 text-white mx-auto" />
@@ -328,32 +366,6 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                 </div>
             </div>
-        </div>
-    );
-
-    const StatCard = ({ title, value, icon: Icon, color, trend }) => (
-        <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-between mb-4">
-                <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center`}
-                    style={{ backgroundColor: `${color}20` }}
-                >
-                    <Icon className="w-6 h-6" style={{ color }} />
-                </div>
-                {trend && (
-                    <span
-                        className={`text-xs px-2 py-1 rounded-full ${trend > 0
-                            ? 'bg-green-100 text-green-600'
-                            : 'bg-red-100 text-red-600'
-                            }`}
-                    >
-                        {trend > 0 ? '+' : ''}
-                        {trend}%
-                    </span>
-                )}
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-1">{value}</h3>
-            <p className="text-gray-600 text-sm">{title}</p>
         </div>
     );
 
@@ -383,38 +395,62 @@ const JohnsHopkinsDigitalOffice = () => {
                 </div>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatCard
-                    title="Active Family Members"
-                    value="4"
-                    icon={Users}
-                    color={colors.primary}
-                    trend={0}
-                />
-                <StatCard
-                    title="Vehicle Stickers"
-                    value="3"
-                    icon={Car}
-                    color={colors.success}
-                    trend={25}
-                />
-                <StatCard
-                    title="Pending Visits"
-                    value="2"
-                    icon={UserCheck}
-                    color={colors.warning}
-                    trend={-10}
-                />
-                <StatCard
-                    title="System Health"
-                    value="98%"
-                    icon={Shield}
-                    color={colors.secondary}
-                    trend={2}
-                />
+            {/* Service Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-7">
+                {[
+                    {
+                        id: 'id-cards',
+                        title: 'ID Card Management',
+                        icon: CreditCard,
+                        color: colors.primary,
+                        description: 'Manage employee identification',
+                    },
+                    {
+                        id: 'stickers',
+                        title: 'Vehicle Stickers',
+                        icon: Car,
+                        color: colors.success,
+                        description: 'Vehicle access permits',
+                    },
+                    {
+                        id: 'security',
+                        title: 'Security Violations',
+                        icon: AlertTriangle,
+                        color: colors.error,
+                        description: 'Security incident management',
+                    },
+                    {
+                        id: 'vendors',
+                        title: 'Vendor Management',
+                        icon: Building,
+                        color: colors.accent,
+                        description: 'Vendor access and services',
+                    },
+                ].map((service) => (
+                    <div
+                        key={service.id}
+                        onClick={() => setCurrentView(service.id)}
+                        className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-2 group"
+                    >
+                        <div
+                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                            style={{ backgroundColor: `${service.color}20` }}
+                        >
+                            <service.icon
+                                className="w-8 h-8"
+                                style={{ color: service.color }}
+                            />
+                        </div>
+                        <h3 className="font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                            {service.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-3">{service.description}</p>
+                        <div className="flex items-center text-blue-600 text-sm font-medium">
+                            <span>Access →</span>
+                        </div>
+                    </div>
+                ))}
             </div>
-
             {/* Johns Hopkins Branding Section */}
             <div
                 className="rounded-3xl p-8 mb-8 text-white relative overflow-hidden"
@@ -471,80 +507,10 @@ const JohnsHopkinsDigitalOffice = () => {
                     <div className="w-full h-full rounded-full border-4 border-white"></div>
                 </div>
             </div>
-
-            {/* Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {[
-                    {
-                        id: 'id-card',
-                        title: 'ID Card Management',
-                        icon: CreditCard,
-                        color: colors.primary,
-                        description: 'Manage employee identification',
-                    },
-                    {
-                        id: 'stickers',
-                        title: 'Vehicle Stickers',
-                        icon: Car,
-                        color: colors.success,
-                        description: 'Vehicle access permits',
-                    },
-                    {
-                        id: 'visits',
-                        title: 'Temporary Visits',
-                        icon: Users,
-                        color: colors.warning,
-                        description: 'Guest access management',
-                    },
-                    {
-                        id: 'easy-pass',
-                        title: 'Easy Pass',
-                        icon: UserCheck,
-                        color: colors.accent,
-                        description: 'Quick facility access',
-                    },
-                    {
-                        id: 'app-enrollment',
-                        title: 'App Enrollment',
-                        icon: Smartphone,
-                        color: colors.secondary,
-                        description: 'Mobile app registration',
-                    },
-                ].map((service) => (
-                    <div
-                        key={service.id}
-                        onClick={() =>
-                            service.id === 'stickers'
-                                ? setCurrentView('stickers')
-                                : service.id === 'visits'
-                                    ? setCurrentView('visits')
-                                    : null
-                        }
-                        className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-2 group"
-                    >
-                        <div
-                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                            style={{ backgroundColor: `${service.color}20` }}
-                        >
-                            <service.icon
-                                className="w-8 h-8"
-                                style={{ color: service.color }}
-                            />
-                        </div>
-                        <h3 className="font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                            {service.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-3">{service.description}</p>
-                        <div className="flex items-center text-blue-600 text-sm font-medium">
-                            <span>Access →</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
         </div>
     );
 
-    const FamilyView = () => (
+    const IDCardManagement = () => (
         <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center">
@@ -556,27 +522,33 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            Family Members & Dependents
+                            ID Card Management
                         </h2>
-                        <p className="text-gray-600">
-                            Manage your family and dependent information
-                        </p>
+                        <p className="text-gray-600">Manage employee identification cards</p>
                     </div>
                 </div>
-                <div className="flex space-x-3">
-                    <button className="bg-blue-100 text-[#009B8C] px-4 py-2 rounded-xl text-sm font-medium hover:bg-blue-200 transition-colors">
-                        In Process Requests
-                    </button>
-                    <button className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg">
+                <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2">
+                        <button className="p-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <Filter className="w-4 h-4 text-gray-400" />
+                        </button>
+                        <button className="p-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <Search className="w-4 h-4 text-gray-400" />
+                        </button>
+                    </div>
+                    <button
+                        onClick={() => setCurrentView('create-id-card')}
+                        className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg"
+                    >
                         <Plus className="w-4 h-4 mr-2" />
-                        Add Dependent
+                        Issue New Card
                     </button>
                 </div>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
-                    <h3 className="text-white font-semibold">Active Family Members</h3>
+                    <h3 className="text-white font-semibold">Employee ID Cards</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -584,16 +556,22 @@ const JohnsHopkinsDigitalOffice = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Member
+                                    Employee
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Relation
+                                    Badge Number
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    ID Expiry
+                                    Department
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Card Type
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Expiry Date
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -601,175 +579,64 @@ const JohnsHopkinsDigitalOffice = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {familyMembers.map((member, index) => (
+                            {idCards.map((card) => (
                                 <tr
-                                    key={member.id}
+                                    key={card.id}
                                     className="hover:bg-blue-50 transition-colors"
                                 >
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
-                                            <div
-                                                className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4"
-                                                style={{
-                                                    backgroundColor: `${colors.primary}${Math.floor(Math.random() * 40) + 60
-                                                        }`,
-                                                }}
-                                            >
-                                                {member.name.charAt(0)}
+                                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                                <CreditCard className="w-5 h-5 text-blue-600" />
                                             </div>
                                             <div>
                                                 <div className="text-sm font-medium text-gray-900">
-                                                    {member.name}
+                                                    {card.employeeName}
                                                 </div>
-                                                <div className="text-sm text-gray-500">
-                                                    Member #{member.id}
+                                                <div className="text-xs text-gray-500">
+                                                    {card.position}
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
+                                        {card.badgeNumber}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {card.department}
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className="inline-flex px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                            {member.relation}
+                                            {card.cardType}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${card.status === 'Active'
+                                                ? 'bg-green-100 text-green-800'
+                                                : card.status === 'Temporary'
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800'
+                                                }`}
+                                        >
+                                            {card.status}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        {member.expiry}
+                                        {card.expiryDate}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="inline-flex px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                                            {member.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm space-x-2">
-                                        <button
-                                            onClick={() => {
-                                                setSelectedEmployee(member);
-                                                setCurrentView('employee-details');
-                                            }}
-                                            className="text-blue-600 hover:text-blue-800 font-medium"
-                                        >
-                                            View Details
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        <button className="text-blue-600 hover:text-blue-800 font-medium mr-3">
+                                            View
+                                        </button>
+                                        <button className="text-green-600 hover:text-green-800 font-medium">
+                                            Renew
                                         </button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    );
-
-    const EmployeeDetails = () => (
-        <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
-            <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center">
-                    <button
-                        onClick={() => setCurrentView('family')}
-                        className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
-                    >
-                        <ArrowLeft className="w-5 h-5 text-gray-600" />
-                    </button>
-                    <div>
-                        <h2 className="text-2xl font-bold text-gray-800">
-                            Employee Details
-                        </h2>
-                        <p className="text-gray-600">Badge No: 200011</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Profile Card */}
-                <div className="lg:col-span-1">
-                    <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <div className="text-center mb-6">
-                            <div
-                                className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold"
-                                style={{ backgroundColor: colors.primary }}
-                            >
-                                HF
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800">Hadi Fadl</h3>
-                            <p className="text-gray-600">Internal Auditing</p>
-                        </div>
-
-                        <button className="w-full bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white py-3 rounded-xl font-medium hover:from-[#00706A] hover:to-[#009B8C] transition-all">
-                            View ID Image
-                        </button>
-                    </div>
-                </div>
-
-                {/* Details */}
-                <div className="lg:col-span-2 space-y-6">
-                    {/* Personal Details */}
-                    <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
-                            Personal Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[
-                                { label: 'First Name', value: 'Hadi' },
-                                { label: 'Last Name', value: 'Fadl' },
-                                { label: 'Middle Name', value: 'M' },
-                                { label: 'Date of Birth', value: '1980-07-13' },
-                                { label: 'Blood Group', value: 'O+' },
-                                { label: 'Nationality', value: 'Saudi Arabia' },
-                                { label: 'Religion', value: 'Muslim' },
-                                { label: 'Gender', value: 'Male' },
-                                { label: 'Mobile Number', value: '+966 50 123 4567' },
-                            ].map((item, index) => (
-                                <div key={index} className="space-y-1">
-                                    <label className="text-sm font-medium text-gray-500">
-                                        {item.label}
-                                    </label>
-                                    <div className="text-sm text-gray-900 font-medium">
-                                        {item.value}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Identification Details */}
-                    <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
-                            Identification Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-gray-500">
-                                    Government ID No
-                                </label>
-                                <div className="text-sm text-gray-900 font-medium">
-                                    1096015000
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Hiring Details */}
-                    <div className="bg-white rounded-2xl shadow-xl p-6">
-                        <h3 className="text-lg text-black font-semibold mb-6 pb-3 border-b border-gray-200">
-                            Hiring Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {[
-                                { label: 'Org Code', value: '30001608' },
-                                { label: 'Organization', value: 'Internal Auditing' },
-                                { label: 'Job Code', value: '506002084' },
-                            ].map((item, index) => (
-                                <div key={index} className="space-y-1">
-                                    <label className="text-sm font-medium text-gray-500">
-                                        {item.label}
-                                    </label>
-                                    <div className="text-sm text-gray-900 font-medium">
-                                        {item.value}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -792,7 +659,9 @@ const JohnsHopkinsDigitalOffice = () => {
                         <p className="text-gray-600">Manage your vehicle access permits</p>
                     </div>
                 </div>
-                <button className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg">
+                <button
+                    onClick={() => setCurrentView('create-sticker')}
+                    className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg">
                     <Plus className="w-4 h-4 mr-2" />
                     New Sticker
                 </button>
@@ -811,10 +680,10 @@ const JohnsHopkinsDigitalOffice = () => {
                                     Vehicle
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Sticker Type
+                                    Owner
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Expiry
+                                    Sticker Type
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     License Plate
@@ -848,14 +717,12 @@ const JohnsHopkinsDigitalOffice = () => {
                                             </div>
                                         </div>
                                     </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {sticker.owner}
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className="inline-flex px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
                                             {sticker.type}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="text-sm text-orange-600 font-medium">
-                                            {sticker.expiry}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
@@ -885,7 +752,7 @@ const JohnsHopkinsDigitalOffice = () => {
         </div>
     );
 
-    const VisitorManagement = () => (
+    const VendorManagement = () => (
         <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center">
@@ -897,9 +764,9 @@ const JohnsHopkinsDigitalOffice = () => {
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-800">
-                            Visitor Management
+                            Vendor Management
                         </h2>
-                        <p className="text-gray-600">Manage visitor access and requests</p>
+                        <p className="text-gray-600">Manage vendor access and services</p>
                     </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -912,18 +779,18 @@ const JohnsHopkinsDigitalOffice = () => {
                         </button>
                     </div>
                     <button
-                        onClick={() => setCurrentView('create-visit')}
+                        onClick={() => setCurrentView('create-vendor')}
                         className="bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-[#00706A] hover:to-[#009B8C] transition-all shadow-lg"
                     >
                         <Plus className="w-4 h-4 mr-2" />
-                        Create Request
+                        Register Vendor
                     </button>
                 </div>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-gradient-to-r from-[#009B8C] to-[#00706A] px-6 py-4">
-                    <h3 className="text-white font-semibold">My Visit Requests</h3>
+                    <h3 className="text-white font-semibold">Vendor Access Requests</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -931,19 +798,19 @@ const JohnsHopkinsDigitalOffice = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Request
+                                    Vendor
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Duration
+                                    Service Period
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Location
+                                    Service Area
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Type
+                                    Service Type
                                 </th>
                                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -951,7 +818,7 @@ const JohnsHopkinsDigitalOffice = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
-                            {visitRequests.map((request) => (
+                            {vendorRequests.map((request) => (
                                 <tr
                                     key={request.id}
                                     className="hover:bg-blue-50 transition-colors"
@@ -959,14 +826,14 @@ const JohnsHopkinsDigitalOffice = () => {
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                                                <UserCheck className="w-5 h-5 text-blue-600" />
+                                                <Building className="w-5 h-5 text-blue-600" />
                                             </div>
                                             <div>
                                                 <div className="text-sm font-medium text-gray-900">
-                                                    #{request.id}
+                                                    {request.companyName}
                                                 </div>
                                                 <div className="text-xs text-gray-500">
-                                                    Visit Request
+                                                    Contact: {request.contactPerson}
                                                 </div>
                                             </div>
                                         </div>
@@ -981,15 +848,17 @@ const JohnsHopkinsDigitalOffice = () => {
                                         <div className="text-sm font-medium text-gray-900">
                                             {request.area}
                                         </div>
-                                        <div className="text-xs text-gray-500">{request.gate}</div>
+                                        <div className="text-xs text-gray-500">{request.serviceType}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span
                                             className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${request.status === 'Pending Approval'
                                                 ? 'bg-yellow-100 text-yellow-800'
-                                                : request.status === 'Expired'
-                                                    ? 'bg-red-100 text-red-800'
-                                                    : 'bg-gray-100 text-gray-800'
+                                                : request.status === 'Approved'
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : request.status === 'Expired'
+                                                        ? 'bg-red-100 text-red-800'
+                                                        : 'bg-gray-100 text-gray-800'
                                                 }`}
                                         >
                                             {request.status}
@@ -1014,22 +883,997 @@ const JohnsHopkinsDigitalOffice = () => {
         </div>
     );
 
-    const CreateVisitRequest = () => {
+    const SecurityViolations = () => (
+        <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+            <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                    <button
+                        onClick={() => setCurrentView('dashboard')}
+                        className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-gray-600" />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-800">
+                            Security Violations
+                        </h2>
+                        <p className="text-gray-600">Monitor and manage security incidents</p>
+                    </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2">
+                        <button className="p-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <Filter className="w-4 h-4 text-gray-400" />
+                        </button>
+                        <button className="p-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <Search className="w-4 h-4 text-gray-400" />
+                        </button>
+                    </div>
+                    <button
+                        onClick={() => setCurrentView('create-security-violation')}
+                        className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-xl text-sm font-medium flex items-center hover:from-red-700 hover:to-red-800 transition-all shadow-lg">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Report Incident
+                    </button>
+                </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4">
+                    <h3 className="text-white font-semibold">Recent Security Violations</h3>
+                </div>
+
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Incident
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Date & Time
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Location
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Severity
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {securityViolations.map((violation) => (
+                                <tr
+                                    key={violation.id}
+                                    className="hover:bg-red-50 transition-colors"
+                                >
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex items-center">
+                                            <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                                <AlertTriangle className="w-5 h-5 text-red-600" />
+                                            </div>
+                                            <div>
+                                                <div className="text-sm font-medium text-gray-900">
+                                                    {violation.type}
+                                                </div>
+                                                <div className="text-xs text-gray-500">
+                                                    ID: #{violation.id}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        <div>{violation.date}</div>
+                                        <div className="text-xs text-gray-500">
+                                            {violation.time}
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm font-medium text-gray-900">
+                                            {violation.location}
+                                        </div>
+                                        <div className="text-xs text-gray-500">
+                                            Reported by: {violation.reportedBy}
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${violation.severity === 'High'
+                                                ? 'bg-red-100 text-red-800'
+                                                : violation.severity === 'Medium'
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-green-100 text-green-800'
+                                                }`}
+                                        >
+                                            {violation.severity}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${violation.status === 'Under Investigation'
+                                                ? 'bg-orange-100 text-orange-800'
+                                                : violation.status === 'Resolved'
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : 'bg-gray-100 text-gray-800'
+                                                }`}
+                                        >
+                                            {violation.status}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        <button className="text-red-600 hover:text-red-800 font-medium">
+                                            View Details
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    // Create ID Card Form
+    const CreateIDCard = () => {
         const [step, setStep] = useState(1);
-        const [currentView, setCurrentView] = useState('create');
 
         return (
             <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
                 <div className="flex items-center mb-8">
                     <button
-                        onClick={() => setCurrentView('visits')}
+                        onClick={() => setCurrentView('id-cards')}
                         className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
                     >
                         <ArrowLeft className="w-5 h-5 text-gray-700" />
                     </button>
                     <div>
                         <h2 className="text-2xl font-bold text-gray-900">
-                            Create Business Access Request
+                            Issue New ID Card
+                        </h2>
+                        <p className="text-gray-700">Step {step} of 2</p>
+                    </div>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="mb-8">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-[#009B8C]">Progress</span>
+                        <span className="text-sm font-medium text-[#009B8C]">
+                            {Math.round((step / 2) * 100)}%
+                        </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                            className="bg-gradient-to-r from-[#009B8C] to-[#00706A] h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${(step / 2) * 100}%` }}
+                        ></div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-xl p-8">
+                    {step === 1 && (
+                        <div>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">Employee Information</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Employee ID1 *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter employee ID"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Full Name *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter full name"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Department *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Department</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="emergency">Emergency Medicine</option>
+                                        <option value="surgery">Surgery</option>
+                                        <option value="it-services">IT Services</option>
+                                        <option value="administration">Administration</option>
+                                        <option value="security">Security</option>
+                                        <option value="maintenance">Maintenance</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Position/Title *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter position"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Card Type *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Card Type</option>
+                                        <option value="employee">Employee</option>
+                                        <option value="medical-staff">Medical Staff</option>
+                                        <option value="contractor">Contractor</option>
+                                        <option value="visitor">Visitor</option>
+                                        <option value="temporary">Temporary</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Access Level
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="standard">Standard Access</option>
+                                        <option value="restricted">Restricted Access</option>
+                                        <option value="high-security">High Security</option>
+                                        <option value="emergency-only">Emergency Only</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Issue Date *
+                                    </label>
+                                    <input
+                                        type="date"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        defaultValue={new Date().toISOString().split('T')[0]}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Expiry Date *
+                                    </label>
+                                    <input
+                                        type="date"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <button
+                                    onClick={() => setCurrentView('id-cards')}
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => setStep(2)}
+                                    className="px-6 py-3 bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white rounded-xl hover:from-[#00706A] hover:to-[#009B8C] transition-all"
+                                >
+                                    Next Step
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {step === 2 && (
+                        <div>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">
+                                Photo & Additional Information
+                            </h3>
+
+                            <div className="bg-blue-50 rounded-xl p-6 mb-6">
+                                <h4 className="font-semibold text-blue-900 mb-4">
+                                    Employee Photo
+                                </h4>
+                                <div className="flex items-center space-x-6">
+                                    <div className="w-32 h-32 bg-gray-200 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
+                                        <div className="text-center">
+                                            <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                                            <p className="text-sm text-gray-500">Upload Photo</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex-1">
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm"
+                                        />
+                                        <p className="text-xs text-gray-500 mt-2">
+                                            Upload a passport-sized photo (max 2MB, JPG/PNG format)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        National ID / Iqama Number
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter ID number"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Emergency Contact
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="+966 XX XXX XXXX"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Blood Type
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Blood Type</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Badge Number
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 bg-gray-100"
+                                        placeholder="Auto-generated"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-8">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
+                                    Special Notes/Medical Conditions
+                                </label>
+                                <textarea
+                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                    placeholder="Any special medical conditions, allergies, or access requirements..."
+                                />
+                            </div>
+
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                                <div className="flex items-start">
+                                    <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
+                                    <div>
+                                        <h5 className="font-medium text-yellow-800 mb-1">Important Notice</h5>
+                                        <p className="text-sm text-yellow-700">
+                                            All ID card requests require approval from HR and Security departments.
+                                            Processing time is typically 2-3 business days. Emergency cards can be issued within 4 hours with proper authorization.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <button
+                                    onClick={() => setStep(1)}
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
+                                >
+                                    Previous
+                                </button>
+                                <div className="space-x-3">
+                                    <button className="px-6 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-colors">
+                                        Save Draft
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setCurrentView('id-cards');
+                                            setStep(1);
+                                        }}
+                                        className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:from-green-700 hover:to-green-800 transition-all"
+                                    >
+                                        Submit for Approval
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    // Create Vehicle Sticker Form
+    const CreateSticker = () => {
+        const [step, setStep] = useState(1);
+
+        return (
+            <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+                <div className="flex items-center mb-8">
+                    <button
+                        onClick={() => setCurrentView('stickers')}
+                        className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-gray-700" />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900">
+                            Request Vehicle Sticker
+                        </h2>
+                        <p className="text-gray-700">Step {step} of 2</p>
+                    </div>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="mb-8">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-[#009B8C]">Progress</span>
+                        <span className="text-sm font-medium text-[#009B8C]">
+                            {Math.round((step / 2) * 100)}%
+                        </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                            className="bg-gradient-to-r from-[#009B8C] to-[#00706A] h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${(step / 2) * 100}%` }}
+                        ></div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-xl p-8">
+                    {step === 1 && (
+                        <div>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">Vehicle Information</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        License Plate Number *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Enter license plate"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Vehicle Make *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g., Toyota, BMW, Ford"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Vehicle Model *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g., Camry, X5, F-150"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Year *
+                                    </label>
+                                    <input
+                                        type="number"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="2023"
+                                        min="1980"
+                                        max="2025"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Vehicle Color *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="e.g., White, Black, Blue"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Vehicle Type *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Vehicle Type</option>
+                                        <option value="car">Car</option>
+                                        <option value="suv">SUV</option>
+                                        <option value="truck">Truck</option>
+                                        <option value="van">Van</option>
+                                        <option value="motorcycle">Motorcycle</option>
+                                        <option value="bus">Bus</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Owner Name *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Vehicle owner name"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Relationship to Requestor
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="self">Self</option>
+                                        <option value="spouse">Spouse</option>
+                                        <option value="family-member">Family Member</option>
+                                        <option value="company">Company Vehicle</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <button
+                                    onClick={() => setCurrentView('stickers')}
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => setStep(2)}
+                                    className="px-6 py-3 bg-gradient-to-r from-[#009B8C] to-[#00706A] text-white rounded-xl hover:from-[#00706A] hover:to-[#009B8C] transition-all"
+                                >
+                                    Next Step
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {step === 2 && (
+                        <div>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">
+                                Sticker Type & Documentation
+                            </h3>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Sticker Type *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Sticker Type</option>
+                                        <option value="employee">Employee</option>
+                                        <option value="visitor">Visitor</option>
+                                        <option value="contractor">Contractor</option>
+                                        <option value="emergency">Emergency Services</option>
+                                        <option value="delivery">Delivery/Service</option>
+                                        <option value="vip">VIP</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Validity Period *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Validity</option>
+                                        <option value="temporary">Temporary (1-30 days)</option>
+                                        <option value="6-months">6 Months</option>
+                                        <option value="1-year">1 Year</option>
+                                        <option value="permanent">Permanent</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-50 rounded-xl p-6 mb-6">
+                                <h4 className="font-semibold text-blue-900 mb-4">
+                                    Required Documents
+                                </h4>
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                                            Vehicle Registration (Mulkiya)
+                                        </label>
+                                        <input
+                                            type="file"
+                                            accept=".pdf,.jpg,.png"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                                            Driver's License
+                                        </label>
+                                        <input
+                                            type="file"
+                                            accept=".pdf,.jpg,.png"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                                            Insurance Certificate
+                                        </label>
+                                        <input
+                                            type="file"
+                                            accept=".pdf,.jpg,.png"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Preferred Parking Zone
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Parking Zone</option>
+                                        <option value="main-building">Main Building</option>
+                                        <option value="emergency">Emergency Department</option>
+                                        <option value="outpatient">Outpatient Clinic</option>
+                                        <option value="staff">Staff Parking</option>
+                                        <option value="visitor">Visitor Parking</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Emergency Contact
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="+966 XX XXX XXXX"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-8">
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
+                                    Additional Notes/Special Requirements
+                                </label>
+                                <textarea
+                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                    placeholder="Any special requirements, disability access needs, or additional information..."
+                                />
+                            </div>
+
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                                <div className="flex items-start">
+                                    <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
+                                    <div>
+                                        <h5 className="font-medium text-yellow-800 mb-1">Important Notice</h5>
+                                        <p className="text-sm text-yellow-700">
+                                            Vehicle stickers are subject to security approval and parking regulations.
+                                            Processing time is 1-2 business days. Temporary stickers can be issued immediately for emergency purposes.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <button
+                                    onClick={() => setStep(1)}
+                                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
+                                >
+                                    Previous
+                                </button>
+                                <div className="space-x-3">
+                                    <button className="px-6 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-colors">
+                                        Save Draft
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setCurrentView('stickers');
+                                            setStep(1);
+                                        }}
+                                        className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:from-green-700 hover:to-green-800 transition-all"
+                                    >
+                                        Submit Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    // Create Security Violation Form
+    const CreateSecurityViolation = () => {
+        return (
+            <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+                <div className="flex items-center mb-8">
+                    <button
+                        onClick={() => setCurrentView('security')}
+                        className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-gray-700" />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900">
+                            Report Security Violation
+                        </h2>
+                        <p className="text-gray-700">File an incident report</p>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-xl p-8">
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+                        <div className="flex items-start">
+                            <AlertTriangle className="w-5 h-5 text-red-600 mr-3 mt-0.5" />
+                            <div>
+                                <h5 className="font-medium text-red-800 mb-1">Emergency Situations</h5>
+                                <p className="text-sm text-red-700">
+                                    For immediate emergencies requiring security response, call Security directly at
+                                    <strong> 999</strong> or use the emergency alert system.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-semibold mb-6 text-gray-900">Incident Details</h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Incident Type *
+                            </label>
+                            <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select Incident Type</option>
+                                <option value="unauthorized-access">Unauthorized Access</option>
+                                <option value="badge-violation">Badge Violation</option>
+                                <option value="vehicle-violation">Vehicle Violation</option>
+                                <option value="suspicious-activity">Suspicious Activity</option>
+                                <option value="theft">Theft/Missing Items</option>
+                                <option value="vandalism">Vandalism</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="safety-violation">Safety Violation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Severity Level *
+                            </label>
+                            <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select Severity</option>
+                                <option value="low">Low - Minor infraction</option>
+                                <option value="medium">Medium - Policy violation</option>
+                                <option value="high">High - Security threat</option>
+                                <option value="critical">Critical - Immediate danger</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Date of Incident *
+                            </label>
+                            <input
+                                type="date"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                defaultValue={new Date().toISOString().split('T')[0]}
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Time of Incident *
+                            </label>
+                            <input
+                                type="time"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                            Location of Incident *
+                        </label>
+                        <input
+                            type="text"
+                            className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="e.g., Main Building - Floor 3, Parking Lot B, Emergency Department"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                            Detailed Description *
+                        </label>
+                        <textarea
+                            className="w-full border border-gray-300 rounded-xl px-4 py-3 h-32 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                            placeholder="Provide a detailed description of what happened, including any relevant circumstances, people involved, and actions taken..."
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Reporter Name *
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Your name"
+                                defaultValue="Hadi Fadl"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Reporter Department
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Your department"
+                                defaultValue="IT Services"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Contact Number
+                            </label>
+                            <input
+                                type="tel"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="+966 XX XXX XXXX"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-800 mb-2">
+                                Witnesses (if any)
+                            </label>
+                            <input
+                                type="text"
+                                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Names of witnesses"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-xl p-6 mb-6">
+                        <h4 className="font-semibold text-blue-900 mb-4">
+                            Supporting Evidence (Optional)
+                        </h4>
+                        <div className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
+                                    Photos/Videos
+                                </label>
+                                <input
+                                    type="file"
+                                    accept="image/*,video/*"
+                                    multiple
+                                    className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-800 mb-2">
+                                    Documents/Reports
+                                </label>
+                                <input
+                                    type="file"
+                                    accept=".pdf,.doc,.docx"
+                                    multiple
+                                    className="w-full border text-black border-gray-300 rounded-lg px-3 py-2 text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mb-8">
+                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                            Immediate Actions Taken
+                        </label>
+                        <textarea
+                            className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                            placeholder="Describe any immediate actions taken in response to the incident..."
+                        />
+                    </div>
+
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                        <div className="flex items-start">
+                            <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
+                            <div>
+                                <h5 className="font-medium text-yellow-800 mb-1">Confidentiality Notice</h5>
+                                <p className="text-sm text-yellow-700">
+                                    This report will be treated confidentially and shared only with authorized security personnel
+                                    and relevant department heads for investigation and resolution purposes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between">
+                        <button
+                            onClick={() => setCurrentView('security')}
+                            className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <div className="space-x-3">
+                            <button className="px-6 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-colors">
+                                Save Draft
+                            </button>
+                            <button
+                                onClick={() => setCurrentView('security')}
+                                className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl hover:from-red-700 hover:to-red-800 transition-all"
+                            >
+                                Submit Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    // Create Vendor Request form (keeping the existing one)
+    const CreateVendorRequest = () => {
+        const [step, setStep] = useState(1);
+
+        return (
+            <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+                <div className="flex items-center mb-8">
+                    <button
+                        onClick={() => setCurrentView('vendors')}
+                        className="mr-4 p-2 rounded-full hover:bg-white transition-colors"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-gray-700" />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900">
+                            Register New Vendor Access
                         </h2>
                         <p className="text-gray-700">Step {step} of 3</p>
                     </div>
@@ -1054,71 +1898,85 @@ const JohnsHopkinsDigitalOffice = () => {
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     {step === 1 && (
                         <div>
-                            <h3 className="text-xl font-semibold mb-6 text-gray-900">Visit Details</h3>
+                            <h3 className="text-xl font-semibold mb-6 text-gray-900">Company Information</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        From Date
+                                        Company Name *
                                     </label>
                                     <input
-                                        type="date"
+                                        type="text"
                                         className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        defaultValue="2025-06-03"
+                                        placeholder="Enter company name"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        To Date
+                                        Commercial Registration No.
                                     </label>
                                     <input
-                                        type="date"
+                                        type="text"
                                         className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        defaultValue="2025-06-06"
+                                        placeholder="Enter CR number"
                                     />
                                 </div>
                             </div>
 
-                            <h4 className="text-lg font-semibold mb-4 text-gray-900">
-                                Visit Purpose & Location
-                            </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Purpose
+                                        Vendor Category *
                                     </label>
                                     <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="" className="text-gray-500">Select Purpose</option>
-                                        <option value="meeting" className="text-gray-900">Meeting</option>
-                                        <option value="conference" className="text-gray-900">Conference</option>
-                                        <option value="training" className="text-gray-900">Training</option>
+                                        <option value="">Select Category</option>
+                                        <option value="medical-equipment">Medical Equipment</option>
+                                        <option value="it-services">IT Services</option>
+                                        <option value="maintenance">Maintenance & Cleaning</option>
+                                        <option value="construction">Construction</option>
+                                        <option value="food-services">Food Services</option>
+                                        <option value="security">Security Services</option>
+                                        <option value="consulting">Consulting</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Area
+                                        Primary Contact Person *
                                     </label>
-                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="" className="text-gray-500">Select Area</option>
-                                        <option value="main-campus" className="text-gray-900">Main Campus</option>
-                                        <option value="research-wing" className="text-gray-900">Research Wing</option>
-                                    </select>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Contact person name"
+                                    />
                                 </div>
                             </div>
 
-                            <div className="mb-8">
-                                <label className="block text-sm font-medium text-gray-800 mb-2">
-                                    Gate
-                                </label>
-                                <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="" className="text-gray-500">Select Gate</option>
-                                    <option value="main-gate" className="text-gray-900">Main Gate</option>
-                                    <option value="north-gate" className="text-gray-900">North Gate</option>
-                                </select>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Contact Email *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="contact@company.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Contact Phone *
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="+966 XX XXX XXXX"
+                                    />
+                                </div>
                             </div>
 
                             <div className="flex justify-between">
                                 <button
-                                    onClick={() => setCurrentView('visits')}
+                                    onClick={() => setCurrentView('vendors')}
                                     className="px-6 py-3 border border-gray-300 rounded-xl text-gray-800 hover:bg-gray-50 transition-colors"
                                 >
                                     Cancel
@@ -1136,37 +1994,85 @@ const JohnsHopkinsDigitalOffice = () => {
                     {step === 2 && (
                         <div>
                             <h3 className="text-xl font-semibold mb-6 text-gray-900">
-                                Purpose & Location Details
+                                Service Details & Access Period
                             </h3>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Service Start Date *
+                                    </label>
+                                    <input
+                                        type="date"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Service End Date *
+                                    </label>
+                                    <input
+                                        type="date"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    />
+                                </div>
+                            </div>
+
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-800 mb-2">
-                                    Detailed Purpose
+                                    Service Description *
                                 </label>
                                 <textarea
                                     className="w-full border border-gray-300 rounded-xl px-4 py-3 h-32 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                                    placeholder="Participating in a meeting, seminar, conference or presentation"
+                                    placeholder="Detailed description of services to be provided..."
                                 />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Access Area *
+                                    </label>
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="">Select Access Area</option>
+                                        <option value="main-hospital">Main Hospital</option>
+                                        <option value="research-center">Research Center</option>
+                                        <option value="admin-building">Administration Building</option>
+                                        <option value="parking-area">Parking Areas</option>
+                                        <option value="all-areas">All Areas (Special Permission)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-800 mb-2">
+                                        Department/Sponsor *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="Sponsoring department"
+                                    />
+                                </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Specific Area
+                                        Access Level
                                     </label>
-                                    <input
-                                        type="text"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        defaultValue="ÄRÖNÖ"
-                                    />
+                                    <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                        <option value="standard">Standard Access</option>
+                                        <option value="restricted">Restricted Access</option>
+                                        <option value="high-security">High Security Clearance</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-800 mb-2">
-                                        Building/Location
+                                        Working Hours
                                     </label>
                                     <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <option value="" className="text-gray-500">Select Building</option>
-                                        <option value="main-hospital" className="text-gray-900">Main Hospital</option>
-                                        <option value="research-center" className="text-gray-900">Research Center</option>
+                                        <option value="business">Business Hours (8AM-5PM)</option>
+                                        <option value="extended">Extended Hours (6AM-10PM)</option>
+                                        <option value="24-7">24/7 Access</option>
                                     </select>
                                 </div>
                             </div>
@@ -1191,28 +2097,72 @@ const JohnsHopkinsDigitalOffice = () => {
                     {step === 3 && (
                         <div>
                             <h3 className="text-xl font-semibold mb-6 text-gray-900">
-                                Visitor & Vehicle Details
+                                Personnel & Vehicle Information
                             </h3>
 
                             <div className="bg-blue-50 rounded-xl p-6 mb-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <h4 className="font-semibold text-blue-900">
-                                        Visitor Information
+                                        Authorized Personnel
                                     </h4>
                                     <button className="text-[#009B8C] text-sm font-medium hover:text-blue-800">
-                                        Add from Favorites
+                                        + Add Person
                                     </button>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
+                                            Full Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter full name"
+                                        />
+                                    </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
                                             ID Type
                                         </label>
                                         <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            <option value="national-id" className="text-gray-900">National ID</option>
-                                            <option value="passport" className="text-gray-900">Passport</option>
+                                            <option value="national-id">National ID</option>
+                                            <option value="iqama">Iqama</option>
+                                            <option value="passport">Passport</option>
                                         </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
+                                            ID Number *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter ID number"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
+                                            Role/Position
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter role"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
+                                            Mobile Number
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Enter mobile number"
+                                        />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
@@ -1226,67 +2176,32 @@ const JohnsHopkinsDigitalOffice = () => {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            ID Number
+                                            Badge Validity (Days)
                                         </label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter ID number"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            First Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter first name"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Last Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter last name"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Mobile Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter mobile number"
+                                            placeholder="30"
+                                            min="1"
+                                            max="365"
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="bg-green-50 rounded-xl p-6 mb-6">
-                                <h4 className="font-semibold text-green-900 mb-4">
-                                    Vehicle Details (Optional)
-                                </h4>
+                                <div className="flex items-center justify-between mb-4">
+                                    <h4 className="font-semibold text-green-900">
+                                        Vehicle Information (Optional)
+                                    </h4>
+                                    <button className="text-[#009B8C] text-sm font-medium hover:text-blue-800">
+                                        + Add Vehicle
+                                    </button>
+                                </div>
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Plate Type
-                                        </label>
-                                        <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            <option value="private" className="text-gray-900">Private</option>
-                                            <option value="commercial" className="text-gray-900">Commercial</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Plate Number
+                                            License Plate
                                         </label>
                                         <input
                                             type="text"
@@ -1296,22 +2211,32 @@ const JohnsHopkinsDigitalOffice = () => {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Manufacturer
+                                            Vehicle Make/Model
                                         </label>
                                         <input
                                             type="text"
                                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter manufacturer"
+                                            placeholder="Toyota Camry"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-800 mb-1">
-                                            Color
+                                            Vehicle Color
                                         </label>
                                         <input
                                             type="text"
                                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                            placeholder="Enter color"
+                                            placeholder="White"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-800 mb-1">
+                                            Driver Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Driver name"
                                         />
                                     </div>
                                 </div>
@@ -1319,13 +2244,25 @@ const JohnsHopkinsDigitalOffice = () => {
 
                             <div className="mb-8">
                                 <label className="block text-sm font-medium text-gray-800 mb-2">
-                                    Justification/Remarks
+                                    Additional Notes/Special Requirements
                                 </label>
                                 <textarea
                                     className="w-full border border-gray-300 rounded-xl px-4 py-3 h-24 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                                    placeholder="Enter justification (max 200 characters)"
-                                    maxLength="200"
+                                    placeholder="Any special requirements, security clearances needed, or additional notes..."
                                 />
+                            </div>
+
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                                <div className="flex items-start">
+                                    <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
+                                    <div>
+                                        <h5 className="font-medium text-yellow-800 mb-1">Important Notice</h5>
+                                        <p className="text-sm text-yellow-700">
+                                            All vendor access requests are subject to security clearance and approval by the Security Department.
+                                            Processing time is typically 3-5 business days. Emergency access requests should be coordinated directly with Security.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="flex justify-between">
@@ -1341,12 +2278,12 @@ const JohnsHopkinsDigitalOffice = () => {
                                     </button>
                                     <button
                                         onClick={() => {
-                                            setCurrentView('visits');
+                                            setCurrentView('vendors');
                                             setStep(1);
                                         }}
                                         className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:from-green-700 hover:to-green-800 transition-all"
                                     >
-                                        Submit Request
+                                        Submit for Approval
                                     </button>
                                 </div>
                             </div>
@@ -1361,25 +2298,31 @@ const JohnsHopkinsDigitalOffice = () => {
         switch (currentView) {
             case 'dashboard':
                 return <Dashboard />;
-            case 'family':
-                return <FamilyView />;
-            case 'employee-details':
-                return <EmployeeDetails />;
+            case 'id-cards':
+                return <IDCardManagement />;
+            case 'create-id-card':
+                return <CreateIDCard />;
             case 'stickers':
                 return <StickersView />;
-            case 'visits':
-                return <VisitorManagement />;
-            case 'create-visit':
-                return <CreateVisitRequest />;
+            case 'create-sticker':
+                return <CreateSticker />;
+            case 'vendors':
+                return <VendorManagement />;
+            case 'create-vendor':
+                return <CreateVendorRequest />;
+            case 'security':
+                return <SecurityViolations />;
+            case 'create-security-violation':
+                return <CreateSecurityViolation />;
             default:
                 return <Dashboard />;
         }
     };
 
     return (
-        <div className="flex min-h-screen bg-gray-100">
+        <div className="flex max-h-screen bg-gray-100 overflow-hidden">
             <Sidebar />
-            <div className="flex-1 max-h-screen overflow-auto">
+            <div className="flex-1 min-h-screen overflow-auto">
                 {renderCurrentView()}
             </div>
         </div>
